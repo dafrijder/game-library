@@ -9,8 +9,8 @@
         <nav>
             <div class="navlinks">
                 <a href="<?php echo $base_url; ?>/index.php">Home</a>
-                <a href="<?php echo $base_url; ?>/public_html/views/games/games.php">Games</a>
-                <a href="<?php echo $base_url; ?>/public_html/views/games/create.php">Create</a>
+                <a href="<?php echo $base_url; ?>/resources/views/games/games.php">Games</a>
+                <a href="<?php echo $base_url; ?>/resources/views/games/create.php">Create</a>
                 <a href="<?php echo $base_url; ?>/login.php">login</a>
             </div>
         </nav>
