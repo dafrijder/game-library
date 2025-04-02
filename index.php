@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
+
     <title>Document</title>
-    <?php require 'head.php'; ?>
+    <?php require_once './resources/views/components/header.php'; ?>
 </head>
+
 <body>
-    <h1>Welkom bij de game library!
-    </h1>
+    <div class="wrapper">
+        <h1>Welkom bij de game library!</h1>
+        <img src="./public_html//img/game-library-logo.jpg" alt="logo">
+    </div>
 </body>
+
 </html>
