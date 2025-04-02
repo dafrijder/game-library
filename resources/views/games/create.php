@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ' . $base_url . '/login');
+    header('Location: ' . $base_url . '/login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_id'])) {
 <body>
     <div class="wrapper">
         <h1>Create a game</h1>
-        <form action="./app/Http/Controllers/game-controler.php" method="post">
+        <form action="/./app/Http/Controllers/game-controler.php" method="post">
             <input type="hidden" name="action" value="create">
             <div class="form-group">
                 <label for="title">title</label>
@@ -31,6 +31,7 @@ if (!isset($_SESSION['user_id'])) {
             <div class="form-group">
                 <input type="submit" value="create">
             </div>
+        </form>
     </div>
 </body>
 </html>
