@@ -15,6 +15,7 @@
         </div>
         <div class="form-container">
             <form action="./app/Http/Controllers/login-controler.php" method="post" id="loginform">
+                <h3>login</h3>
                 <input type="hidden" name="action" value="login">
                 <div class="form-group">
                     <label for="username">username</label>
@@ -29,6 +30,7 @@
                 </div>
             </form>
             <form action="./app/Http/Controllers/login-controler.php" method="post" id="signupform">
+                <h3>signup</h3>
                 <input type="hidden" name="action" value="signup">
                 <div class="form-group">
                     <label for="username">username</label>
