@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public_html/css/main.css">
-    <?php require_once __DIR__.'/../../../config/config.php'; ?>
+    <?php require_once __DIR__ . '/../../../config/config.php'; ?>
 </head>
 <div class="wrapper">
     <header>
@@ -11,7 +11,11 @@
                 <a href="<?php echo $base_url; ?>/index.php">Home</a>
                 <a href="<?php echo $base_url; ?>/resources/views/games/games.php">Games</a>
                 <a href="<?php echo $base_url; ?>/resources/views/games/create.php">Create</a>
-                <a href="<?php echo $base_url; ?>/login.php">login</a>
+                <?php if (isset($_SESSION['user_id'])) : ?>
+                    <a href="<?php echo $base_url; ?>/logout.php">Uitloggen</a>
+                <?php else : ?>
+                    <a href="<?php echo $base_url; ?>/login.php">Inloggen</a>
+                <?php endif; ?>
             </div>
         </nav>
     </header>
