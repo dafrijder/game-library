@@ -9,8 +9,12 @@
 </head>
 <body>
     <div class="wrapper">
+        <div class="buttons">
+            <button id="loginbutton">Login</button>
+            <button id="signupbutton">Signup</button>
+        </div>
         <div class="form-container">
-            <form action="./app/Http/Controllers/login-controler.php" method="post" id="login">
+            <form action="./app/Http/Controllers/login-controler.php" method="post" id="loginform">
                 <input type="hidden" name="action" value="login">
                 <div class="form-group">
                     <label for="username">username</label>
@@ -24,8 +28,22 @@
                     <input type="submit" value="login">
                 </div>
             </form>
-            <form action="./app/Http/Controllers/login-controler.php" method="post" id="signup"></form>
+            <form action="./app/Http/Controllers/login-controler.php" method="post" id="signupform">
+                <input type="hidden" name="action" value="signup">
+                <div class="form-group">
+                    <label for="username">username</label>
+                    <input type="text" name="username" id="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">password</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="signup">
+                </div>
+            </form>
         </div>
     </div>
 </body>
+<script src="/public_html/js/main.js"></script>
 </html>
