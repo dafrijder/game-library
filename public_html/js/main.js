@@ -4,6 +4,8 @@ var loginform = document.getElementById("loginform");
 
 var signupButton = document.getElementById("signupbutton");
 var signupform = document.getElementById("signupform");
+signupform.style.display = "block";
+loginform.style.display = "none";
 
 loginButton.addEventListener("click", function(){
     loginform.style.display = "block";

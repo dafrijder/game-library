@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public_html/css/login.css">
     <?php require_once __DIR__.'/config/config.php'; ?>
     <?php require_once __DIR__.'/resources/views/components/header.php'; ?>
     <title>login</title>
