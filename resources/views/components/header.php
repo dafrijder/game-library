@@ -17,9 +17,9 @@
                     <a href="<?php echo $base_url; ?>/login.php">Inloggen</a>
                 <?php endif; ?>
             </div>
-            <?php if (isset($_SESSION['user_id'])) : ?>
+            <?php if (isset($_SESSION['username'])) : ?>
                 <div class="user">
-                    <p>Welkom <?php echo $_SESSION['user_id']; ?></p>
+                    <p>Welkom <?php echo $_SESSION['username']; ?></p>
                 </div>
             <?php endif; ?>
         </nav>
