@@ -6,6 +6,7 @@ session_start();
 
 <head>
     <title>Home</title>
+    <link rel="stylesheet" href="./public_html/css/home.css">
 </head>
 
 <body>
