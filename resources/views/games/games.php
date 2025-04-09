@@ -3,6 +3,7 @@
 
 <head>
     <title>Games</title>
+    <link rel="stylesheet" href="../../../public_html/css/games.css">
 </head>
 
 <body>
@@ -23,14 +24,29 @@
                     <th>Naam</th>
                     <th>Genre</th>
                     <th>Maker</th>
-                    <th>Actie</th>
+                    <th colspan="2">Actie</th>
                 </tr>
                 <?php foreach ($games as $game): ?>
                     <tr>
                         <td><?php echo $game['Naam']; ?></td>
                         <td><?php echo $game['Genre']; ?></td>
                         <td><?php echo $game['Maker']; ?></td>
-                        <td><button class="edit-btn" data-id="<?php echo $game['id']; ?>">Aanpassen</button></td>
+                        <td>
+                            <button class="edit-btn" 
+                                    data-id="<?php echo $game['id']; ?>"
+                                    data-name="<?php echo htmlspecialchars($game['Naam']); ?>"
+                                    data-genre="<?php echo htmlspecialchars($game['Genre']); ?>"
+                                    data-maker="<?php echo htmlspecialchars($game['Maker']); ?>">
+                                Aanpassen
+                            </button>
+                        </td>
+                        <td>
+                            <button class="delete-btn" 
+                                    data-id="<?php echo $game['id']; ?>"
+                                    data-name="<?php echo htmlspecialchars($game['Naam']); ?>">
+                                Verwijderen
+                            </button>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </table>
@@ -42,7 +58,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Game aanpassen</h2>
-            <form id="editGameForm" action="./app/Http/Controllers/game-controller.php" method="post">
+            <form id="editGameForm" action="<?php echo $base_url; ?>/app/Http/Controllers/game-controler.php" method="post">
                 <input type="hidden" name="action" value="update">
                 <input type="hidden" name="game_id" id="game_id">
                 
@@ -68,42 +84,87 @@
         </div>
     </div>
 
+    <!-- Modal for deleting games -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close-delete">&times;</span>
+            <h2>Game verwijderen</h2>
+            <p>Weet je zeker dat je <span id="delete-game-name"></span> wilt verwijderen?</p>
+            <form id="deleteGameForm" action="<?php echo $base_url; ?>/app/Http/Controllers/game-controler.php" method="post">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="game_id" id="delete_game_id">
+                
+                <div class="form-group delete-buttons">
+                    <button type="button" id="cancel-delete">Annuleren</button>
+                    <input type="submit" value="Verwijderen" class="delete-confirm">
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // Get the modal
-        var modal = document.getElementById("editModal");
-        
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-        
-        // Get all edit buttons
+        // Edit Modal functionality
+        var editModal = document.getElementById("editModal");
+        var editSpan = editModal.querySelector(".close");
         var editButtons = document.getElementsByClassName("edit-btn");
         
-        // Add click event to all edit buttons
         for (var i = 0; i < editButtons.length; i++) {
             editButtons[i].onclick = function() {
                 var gameId = this.getAttribute("data-id");
+                var gameName = this.getAttribute("data-name");
+                var gameGenre = this.getAttribute("data-genre");
+                var gameMaker = this.getAttribute("data-maker");
+                
                 document.getElementById("game_id").value = gameId;
+                document.getElementById("game_name").value = gameName;
+                document.getElementById("game_genre").value = gameGenre;
+                document.getElementById("game_maker").value = gameMaker;
                 
-                // Here you would typically fetch the game details via AJAX
-                // For now, we'll just show the modal with empty fields
-                // In a real implementation, you'd populate these fields with the game data
-                
-                modal.style.display = "block";
+                editModal.style.display = "block";
             }
         }
         
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
+        editSpan.onclick = function() {
+            editModal.style.display = "none";
         }
         
-        // When the user clicks anywhere outside of the modal, close it
+        // Delete Modal functionality
+        var deleteModal = document.getElementById("deleteModal");
+        var deleteSpan = deleteModal.querySelector(".close-delete");
+        var deleteButtons = document.getElementsByClassName("delete-btn");
+        var cancelDelete = document.getElementById("cancel-delete");
+        
+        for (var i = 0; i < deleteButtons.length; i++) {
+            deleteButtons[i].onclick = function() {
+                var gameId = this.getAttribute("data-id");
+                var gameName = this.getAttribute("data-name");
+                
+                document.getElementById("delete_game_id").value = gameId;
+                document.getElementById("delete-game-name").textContent = gameName;
+                
+                deleteModal.style.display = "block";
+            }
+        }
+        
+        deleteSpan.onclick = function() {
+            deleteModal.style.display = "none";
+        }
+        
+        cancelDelete.onclick = function() {
+            deleteModal.style.display = "none";
+        }
+        
+        // Close modals when clicking outside
         window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+            if (event.target == editModal) {
+                editModal.style.display = "none";
+            }
+            if (event.target == deleteModal) {
+                deleteModal.style.display = "none";
             }
         }
     </script>
 </body>
 
 </html>
+         
